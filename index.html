@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Ultra Library</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="img/icon.png">
+</head>
+
+<body class="startup">
+
+<div id="dim"></div>
+<div id="fade"></div>
+
+<div id="screen">
+
+<img id="title" src="img/title.png" alt="Ultra Library">
+
+<div id="filters">
+<button class="filter-btn active" onclick="setFilter('all')">TODOS</button>
+<button class="filter-btn" onclick="setFilter('nes')">NES</button>
+<button class="filter-btn" onclick="setFilter('snes')">SNES</button>
+<button class="filter-btn" onclick="setFilter('gb')">GB</button>
+<button class="filter-btn" onclick="setFilter('n64')">N64</button>
+</div>
+
+<div id="library"></div>
+
+<div id="game"></div>
+
+</div>
+
+<script>
+let emulatorLoaded = false;
+
+function startGame(core, rom){
+EJS_player = "#game";
+EJS_core = core;
+
+EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+EJS_gameUrl = rom;
+
+EJS_startOnLoaded = true;
+
+if(!emulatorLoaded){
+var script = document.createElement("script");
+script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+document.body.appendChild(script);
+
+emulatorLoaded = true;
+}
+}
+</script>
+
+<script src="js/roms.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
