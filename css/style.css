@@ -326,3 +326,170 @@ z-index:999;
 opacity:1;
 pointer-events:none;
 }
+
+#changelog{
+ width:250px;
+ height:fit-content;
+
+ position:relative; /* REMOVE absolute */
+
+ background:#0f2d5ccc;
+ border:3px solid #1b3c7a;
+ border-radius:12px;
+
+ padding:15px;
+}
+
+#changelog h2{
+ margin-top: 0;
+ font-size: 16px;
+}
+
+.log{
+ margin-bottom: 20px;
+}
+
+.log h3{
+ margin: 0;
+ font-size: 14px;
+}
+
+.date{
+ font-size: 11px;
+ opacity: 0.6;
+}
+
+.log ul{
+ margin: 5px 0 10px 15px;
+ padding: 0;
+}
+
+/* BOTÃO */
+
+#changelog-btn{
+ position:fixed;
+ top:20px;
+ right:20px;
+
+ width:40px;
+ height:40px;
+
+ background:#5f8ed8;
+ border:3px solid #1b3c7a;
+ border-radius:8px;
+
+ color:white;
+ font-size:18px;
+
+ cursor:pointer;
+ z-index:1000;
+
+ transition:0.2s;
+}
+
+#changelog-btn:hover{
+ transform:scale(1.1);
+ background:#7aa6ff;
+}
+
+/* JANELA */
+
+#changelog{
+ position:fixed;
+ top:50%;
+ left:50%;
+
+ width:260px;
+ max-height:400px;
+ overflow-y:auto;
+
+ background:rgba(15, 45, 92, 0.788);
+ backdrop-filter: blur(4px);
+ border:3px solid #1b3c7a;
+ border-radius:12px;
+
+ padding:15px;
+
+ transform:translate(-50%, -60%) scale(0.9);
+ opacity:0;
+ pointer-events:none;
+
+ transition:0.25s;
+ z-index:999;
+}
+
+/* estado aberto */
+
+#changelog.open{
+ transform:translate(-50%, -50%) scale(1);
+ opacity:1;
+ pointer-events:auto;
+}
+
+/* título */
+
+#changelog h2{
+ margin:0;
+ margin-bottom:10px;
+ padding-bottom:6px;
+
+ border-bottom:2px solid #1b3c7a;
+
+ font-size:15px;
+ letter-spacing:1px;
+}
+
+/* logs */
+
+.log{
+ background:rgba(0,0,0,0.25);
+ border:2px solid #1b3c7a;
+ border-radius:8px;
+
+ padding:10px;
+ margin-bottom:12px;
+
+ transition:0.2s;
+}
+
+.log:hover{
+ background:rgba(0,0,0,0.4);
+ transform:scale(1.02);
+}
+
+.log h3{
+ margin:0;
+ font-size:13px;
+ color:#ffe066;
+}
+
+.date{
+ display:block;
+ font-size:10px;
+ opacity:0.5;
+ margin-bottom:6px;
+}
+
+.log ul{
+ margin:4px 0 8px 12px;
+ padding:0;
+ font-size:12px;
+}
+
+.log li{
+ margin-bottom:2px;
+}
+
+.section-title{
+ margin:6px 0 2px 0;
+ font-size:11px;
+ color:#9ecbff;
+ text-transform:uppercase;
+ letter-spacing:1px;
+}
+
+/* opcional: scroll mais bonito dentro */
+
+#changelog::-webkit-scrollbar{
+ width:10px;
+}

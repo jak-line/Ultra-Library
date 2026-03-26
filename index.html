@@ -14,16 +14,27 @@
 <div id="dim"></div>
 <div id="fade"></div>
 
+<button id="changelog-btn">📜</button>
+
 <div id="screen">
 
 <img id="title" src="img/title.png" alt="Ultra Library">
 
 <div id="filters">
-<button class="filter-btn active" onclick="setFilter('all')">TODOS</button>
-<button class="filter-btn" onclick="setFilter('nes')">NES</button>
-<button class="filter-btn" onclick="setFilter('snes')">SNES</button>
-<button class="filter-btn" onclick="setFilter('gb')">GB</button>
-<button class="filter-btn" onclick="setFilter('n64')">N64</button>
+<button class="filter-btn active" onclick="setFilter('all', this)">TODOS</button>
+<button class="filter-btn" onclick="setFilter('nes', this)">NES</button>
+<button class="filter-btn" onclick="setFilter('snes', this)">SNES</button>
+<button class="filter-btn" onclick="setFilter('gb', this)">GB</button>
+<button class="filter-btn" onclick="setFilter('gba', this)">GBA</button>
+<button class="filter-btn" onclick="setFilter('n64', this)">N64</button>
+</div>
+
+<div id="changelog" class="hidden">
+
+<h2>Atualizações</h2>
+
+<div id="changelog-content"></div>
+
 </div>
 
 <div id="library"></div>
