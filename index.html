@@ -1,72 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<title>Ultra Library</title>
+  <!-- ===== META ===== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" type="image/png" href="img/icon.png">
+  <!-- ===== TITLE & ICON ===== -->
+  <title>Ultra Library</title>
+  <link rel="icon" type="image/png" href="img/icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- ===== STYLES ===== -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="startup">
+<body>
 
-<div id="dim"></div>
-<div id="fade"></div>
+  <!-- ===== OVERLAYS ===== -->
+  <div id="dim"></div>
+  <div id="fade"></div>
+  <div id="game-transition"></div>
 
-<button id="changelog-btn">📜</button>
+  <!-- ===== CHANGELOG BUTTON ===== -->
+  <button id="changelog-btn">📜</button>
 
-<div id="screen">
+  <!-- ===== INTRO ===== -->
+  <div id="intro">
+    <img id="ps2" src="img/ps2open.png" alt="">
+    <img id="cd" src="img/cdgame.png" alt="">
+    <div id="intro-bg"></div>
 
-<img id="title" src="img/title.png" alt="Ultra Library">
+    <button id="skip-intro">PULAR</button>
+    <p id="insert-text">Insira para iniciar</p>
+  </div>
 
-<div id="filters">
-<button class="filter-btn active" onclick="setFilter('all', this)">TODOS</button>
-<button class="filter-btn" onclick="setFilter('nes', this)">NES</button>
-<button class="filter-btn" onclick="setFilter('snes', this)">SNES</button>
-<button class="filter-btn" onclick="setFilter('gb', this)">GB</button>
-<button class="filter-btn" onclick="setFilter('gba', this)">GBA</button>
-<button class="filter-btn" onclick="setFilter('n64', this)">N64</button>
-</div>
+  <!-- ===== MAIN SCREEN ===== -->
+  <main id="screen">
 
-<div id="changelog" class="hidden">
+    <!-- TITLE -->
+    <div id="title-container">
+      <img id="title" src="img/title.png" alt="Ultra Library">
+      <p id="subtitle">Emulação retrô direto no navegador</p>
+    </div>
 
-<h2>Atualizações</h2>
+    <!-- FILTERS -->
+    <div id="filters">
+      <button class="filter-btn active" data-filter="all">TODOS</button>
+      <button class="filter-btn" data-filter="nes">NES</button>
+      <button class="filter-btn" data-filter="snes">SNES</button>
+      <button class="filter-btn" data-filter="gb">GB</button>
+      <button class="filter-btn" data-filter="gba">GBA</button>
+      <button class="filter-btn" data-filter="n64">N64</button>
+      <button class="filter-btn" data-filter="genesis">GEN</button>
+    </div>
 
-<div id="changelog-content"></div>
+    <!-- CHANGELOG PANEL -->
+    <div id="changelog">
+      <h2>Atualizações</h2>
+      <div id="changelog-content"></div>
+    </div>
 
-</div>
+<!-- <div id="controls-ui">
+       <button onclick="applyPreset('single')">1P</button>
+       <button onclick="applyPreset('multiKeyboard')">2P</button>
+     </div> -->
 
-<div id="library"></div>
+    <!-- GAME LIBRARY -->
+    <div id="library"></div>
 
-<div id="game"></div>
+  </main>
 
-</div>
+  <!-- ===== GAME PLAYER ===== -->
+  <div id="game">
+    <div id="game-msg">
+      <span class="loading-text">Carregando...</span>
+      <span class="f5-text">Pressione F5 ou recarregue a página para voltar</span>
+    </div>
+  </div>
 
-<script>
-let emulatorLoaded = false;
+  <!-- ===== AUDIO ===== -->
+  <audio id="bgm" src="audio/bgm.mp3" loop></audio>
+  <audio id="cd-insert-sfx" src="audio/cdinsert.mp3"></audio>
+  <audio id="cd-read" src="audio/discread.mp3"></audio>
 
-function startGame(core, rom){
-EJS_player = "#game";
-EJS_core = core;
-
-EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-EJS_gameUrl = rom;
-
-EJS_startOnLoaded = true;
-
-if(!emulatorLoaded){
-var script = document.createElement("script");
-script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
-document.body.appendChild(script);
-
-emulatorLoaded = true;
-}
-}
-</script>
-
-<script src="js/roms.js"></script>
-<script src="js/script.js"></script>
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/roms.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/changelog.js"></script>
+  <!-- <script src="js/controls.js"></script> -->
+  <script src="js/emulator.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 </html>

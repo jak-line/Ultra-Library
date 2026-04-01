@@ -1,169 +1,277 @@
+// ===== STATE =====
+
 let currentFilter = "all";
+let firstRender = true;
+let startupBlock = null;
 
-function createGame(title, core, romKey){
- return {
-  title: title,
-  core: core,
-  rom: ROMS[romKey] || null,
-  cover: "covers/" + romKey + ".png"
- };
-}
-
-// ADD GAMES HERE ---------------------------------------------------
-
-const games = [
- createGame("Super Mario Bros", "nes", "mario1"),
- createGame("Super Mario Bros 2", "nes", "mario2"),
- createGame("Super Mario Bros 3", "nes", "mario3"),
- createGame("Super Mario World", "snes", "marioworld"),
- createGame("Mario 64", "n64", "mario64"),
- createGame("Pokemon Red", "gb", "pokemonred"),
- createGame("Kirby's Dream Course", "snes", "kirbydc"),
- createGame("Kirby: Nightmare in Dream Land", "gba", "kirbynidl"),
- createGame("Donkey Kong Country", "snes", "dkcountry"),
- createGame("The New Tetris", "n64", "tntetris"),
- createGame("Super Bomberman 2", "snes", "sbomber2"),
- createGame("Super Bomberman 4", "snes", "sbomber4"),
- createGame("Super Bomberman 5", "snes", "sbomber5")
-];
-
-// FILTER
-
-function setFilter(filter, el){
- currentFilter = filter;
-
- document.querySelectorAll(".filter-btn").forEach(btn => {
-  btn.classList.remove("active");
- });
-
- el.classList.add("active");
-
- renderGames();
-}
-
-// OTHERS -----------------------------------------------------------
+// ===== ELEMENTS =====
 
 const library = document.getElementById("library");
+const msg = document.getElementById("game-msg");
+const bgm = document.getElementById("bgm");
+const cdInsertSfx = document.getElementById("cd-insert-sfx");
+const discRead = document.getElementById("cd-read");
+const loadingText = document.querySelector(".loading-text");
 
-function renderGames(){
-
- library.innerHTML = "";
-
- games.forEach(game => {
-
-  if(currentFilter !== "all" && game.core !== currentFilter){
-   return;
-  }
-
-  const div = document.createElement("div");
-  div.className = "game";
-
-  div.onclick = () => {
-   if(!game.rom) return;
-   startGame(game.core, game.rom);
-  };
-
-  div.innerHTML = `
-  <img src="${game.cover}">
-  <p>${game.title}</p>
-  `;
-
-  library.appendChild(div);
-
- });
-
-}
-
-window.addEventListener("load", () => {
-
- setTimeout(() => {
-  document.body.classList.remove("startup");
- }, 900);
-
- setTimeout(() => {
-  document.getElementById("fade").style.display = "none";
- }, 500);
-
-});
-
-renderGames();
-
-const changelog = [
- {
-  version: "Beta v0.3",
-  date: "26/03/2026",
-  added: ["Super Mario Bros 2", "Super Mario Bros 3", "Super Mario World", "Super Bomberman 2", "Super Bomberman 4", "Super Bomberman 5", "Kirby Nightmare in Dream Land"],
-  changes: [
-   "Sistema de filtros adicionado",
-   "Changelogs adicionado"
-  ]
- }
-];
-
-function renderChangelog(){
-
- const container = document.getElementById("changelog");
-
- changelog.forEach(log => {
-
-  const div = document.createElement("div");
-  div.className = "log";
-
-  div.innerHTML = `
-   <h3>${log.version}</h3>
-   <span class="date">${log.date}</span>
-
-   <p>🎮 Novos jogos:</p>
-   <ul>${log.added.map(g => `<li>${g}</li>`).join("")}</ul>
-
-   <p>⚙️ Mudanças:</p>
-   <ul>${log.changes.map(c => `<li>${c}</li>`).join("")}</ul>
-  `;
-
-  container.appendChild(div);
-
- });
-
-}
+const intro = document.getElementById("intro");
+const cd = document.getElementById("cd");
+const ps2 = document.getElementById("ps2");
+const skipBtn = document.getElementById("skip-intro");
 
 const changelogBtn = document.getElementById("changelog-btn");
 const changelogBox = document.getElementById("changelog");
 
-changelogBtn.onclick = () => {
- changelogBox.classList.toggle("open");
+// ===== LOADING =====
 
- if(changelogBox.classList.contains("open")){
-  document.getElementById("dim").style.opacity = "1";
- } else {
-  document.getElementById("dim").style.opacity = "0";
- }
-};
+let dots = 0;
+let loadingInterval = null;
 
-// render no container certo
-function renderChangelog(){
+function startLoadingDots() {
+  dots = 0;
 
- const container = document.getElementById("changelog-content");
- container.innerHTML = "";
-
- changelog.forEach(log => {
-
-  const div = document.createElement("div");
-  div.className = "log";
-
-  div.innerHTML = `
-   <h3>${log.version}</h3>
-   <span class="date">${log.date}</span>
-
-   <p class="section-title">🎮 Novos jogos</p>
-   <ul>${log.added.map(g => `<li>${g}</li>`).join("")}</ul>
-
-   <p class="section-title">⚙️ Mudanças</p>
-   <ul>${log.changes.map(c => `<li>${c}</li>`).join("")}</ul>
-  `;
-
-  container.appendChild(div);
-
- });
+  loadingInterval = setInterval(() => {
+    dots = (dots + 1) % 4;
+    loadingText.textContent = "Carregando" + ".".repeat(dots);
+  }, 400);
 }
 
-renderChangelog();
+function stopLoadingDots() {
+  clearInterval(loadingInterval);
+}
+
+// ===== GAME FLOW =====
+
+function startGameFlow(game) {
+  document.body.classList.add("playing");
+  bgm.pause();
+
+  setTimeout(() => {
+    startLoadingDots();
+    msg.style.opacity = "1";
+
+    setTimeout(() => {
+      msg.style.opacity = "0";
+      stopLoadingDots();
+
+      setTimeout(() => {
+        startGame(game.core, game.rom);
+      }, 400);
+
+    }, 2500);
+  }, 1000);
+}
+
+// ===== FILTER =====
+
+function setFilter(filter, el) {
+  currentFilter = filter;
+
+  document.querySelectorAll(".filter-btn").forEach(btn =>
+    btn.classList.remove("active")
+  );
+
+  el.classList.add("active");
+  renderGames();
+}
+
+// ===== RENDER =====
+
+function renderGames() {
+  library.innerHTML = "";
+
+  games.forEach((game, index) => {
+    if (currentFilter !== "all" && game.core !== currentFilter) return;
+
+    const div = document.createElement("div");
+    div.className = "game";
+    div.dataset.index = index;
+
+    div.addEventListener("mouseenter", () => {
+      document.body.classList.add("hovering-game");
+    });
+
+    div.addEventListener("mouseleave", () => {
+      document.body.classList.remove("hovering-game");
+    });
+
+    div.innerHTML = `
+      <div class="cover">
+        <img src="${game.cover}">
+        ${game.isNew ? '<img class="new-badge" src="img/new.png">' : ''}
+      </div>
+      <p>${game.title}</p>
+    `;
+
+    library.appendChild(div);
+  });
+
+  if (document.body.classList.contains("ready")) {
+    animateGames();
+  }
+
+  firstRender = false;
+}
+
+function animateGames() {
+  const allGames = document.querySelectorAll(".game");
+
+  allGames.forEach((game, i) => {
+    setTimeout(() => {
+      game.style.opacity = "1";
+      game.style.transform = "translateY(0)";
+    }, i * 80);
+  });
+}
+
+// ===== EVENTS =====
+
+// click nos jogos
+library.addEventListener("click", (e) => {
+  const gameDiv = e.target.closest(".game");
+  if (!gameDiv) return;
+
+  const game = games[gameDiv.dataset.index];
+  if (!game || !game.rom) return;
+
+  startGameFlow(game);
+});
+
+// filtros
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    setFilter(btn.dataset.filter, btn);
+  });
+});
+
+// changelog toggle
+changelogBtn.addEventListener("click", () => {
+  changelogBox.classList.toggle("open");
+  document.body.classList.toggle("changelog-open");
+});
+
+// ===== INTRO =====
+
+let introStarted = false;
+
+cd.addEventListener("click", () => {
+  if (introStarted) return;
+  introStarted = true;
+
+  startupBlock = createStartupBlock();
+
+  cd.classList.add("insert");
+
+  cdInsertSfx.currentTime = 0.9;
+  cdInsertSfx.volume = 0.7;
+  cdInsertSfx.play().catch(() => {});
+
+  cd.addEventListener("animationend", () => {
+    handleDiscInsert();
+  }, { once: true });
+});
+
+// skip intro
+skipBtn.addEventListener("click", () => {
+  if (introStarted) return;
+  introStarted = true;
+
+  startupBlock = createStartupBlock();
+
+  ps2.src = "img/ps2closed.png";
+  ps2.style.zIndex = 3;
+  ps2.style.filter = "brightness(1)";
+
+  intro.style.opacity = "0";
+
+  setTimeout(() => {
+    finishStartup(2600);
+  }, 600);
+});
+
+// ===== INTRO HELPERS =====
+
+function createStartupBlock() {
+  const block = document.createElement("div");
+  block.id = "startup-block";
+  document.body.appendChild(block);
+  return block;
+}
+
+function handleDiscInsert() {
+  setTimeout(() => {
+    discRead.currentTime = 0;
+    discRead.volume = 0.7;
+    discRead.play().catch(() => {});
+  }, 350);
+
+  ps2.src = "img/ps2closed.png";
+  ps2.style.zIndex = 3;
+  ps2.style.filter = "brightness(1.6) contrast(1.2)";
+
+  setTimeout(() => {
+    ps2.style.filter = "brightness(1)";
+  }, 100);
+
+  ps2.classList.add("ps2-squish");
+
+  setTimeout(() => {
+    ps2.classList.remove("ps2-squish");
+  }, 180);
+
+  setTimeout(() => {
+    intro.style.opacity = "0";
+
+    setTimeout(() => {
+      finishStartup(2600);
+    }, 600);
+
+  }, 900);
+}
+
+function finishStartup(delay) {
+  window.scrollTo(0, 0);
+
+  intro.style.display = "none";
+
+  document.body.classList.add("started", "startup");
+
+  renderGames();
+
+  setTimeout(() => {
+    showUI();
+    startBGM();
+    document.body.classList.add("ready");
+
+    startupBlock.style.opacity = "0";
+    setTimeout(() => startupBlock.remove(), 300);
+
+    animateGames();
+
+  }, delay);
+}
+
+function showUI() {
+  document.getElementById("filters").style.opacity = "1";
+  document.getElementById("subtitle").style.opacity = "1";
+
+  const btn = document.getElementById("changelog-btn");
+  btn.style.opacity = "1";
+  btn.style.pointerEvents = "auto";
+}
+
+function startBGM() {
+  bgm.volume = 0;
+  bgm.play();
+
+  discRead.pause();
+  discRead.currentTime = 0;
+
+  let vol = 0;
+
+  const fade = setInterval(() => {
+    vol += 0.05;
+    bgm.volume = vol;
+
+    if (vol >= 0.4) clearInterval(fade);
+  }, 100);
+}
