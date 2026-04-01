@@ -1,10 +1,9 @@
-@ -0,0 +1,121 @@
 ![Status](https://img.shields.io/badge/status-active-blue)
 ![JS](https://img.shields.io/badge/JavaScript-vanilla-yellow)
 
 # 🎮 Ultra Library
 
-![Preview](assets/preview.png)
+![Preview](img/preview.png)
 
 Uma biblioteca web de jogos retrô rodando diretamente no navegador, sem necessidade de instalação.
 
