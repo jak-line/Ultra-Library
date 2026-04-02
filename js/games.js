@@ -48,9 +48,9 @@ const games = [
   createGame("Mega Man Zero 2", "gba", "megamanzero2", true),
 
   // ================= SONIC =================
-  createGame("Sonic the Hedgehog", "genesis", "sonic", true),
-  createGame("Sonic the Hedgehog 2", "genesis", "sonic2", true),
-  createGame("Sonic 3 & Knuckles", "genesis", "s3k", true),
+  createGame("Sonic the Hedgehog", "segaMD", "sonic", true),
+  createGame("Sonic the Hedgehog 2", "segaMD", "sonic2", true),
+  createGame("Sonic 3 & Knuckles", "segaMD", "s3k", true),
   createGame("Sonic Advance", "gba", "sonicadvance", true),
   createGame("Sonic Advance 2", "gba", "sonicadvance2", true),
   createGame("Sonic Advance 3", "gba", "sonicadvance3", true),
@@ -62,8 +62,8 @@ const games = [
 
   // ================= RPG =================
   createGame("EarthBound", "snes", "earthbound", true),
-  createGame("Final Fantasy V", "snes", "FFV", true),
-  createGame("Final Fantasy VI", "gba", "FFVI", true),
+  createGame("Final Fantasy V", "snes", "ffv", true),
+  createGame("Final Fantasy VI", "gba", "ffvi", true),
   createGame("Pokemon Red", "gb", "pokemonred"),
 
   // ================= BOMBERMAN =================
