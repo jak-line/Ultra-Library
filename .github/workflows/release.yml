@@ -13,6 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v2.0.0
+          name: Ultra Library v2.0.0
+          body: |
+            🚀 Ultra Library v2.0.0 lançada automaticamente
+
+            - Nova versão do site publicada
+            - Melhorias gerais
+            - Atualização de conteúdo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
       - name: Checkout repo
         uses: actions/checkout@v4
 
