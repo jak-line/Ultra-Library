@@ -1,0 +1,381 @@
+body[data-theme="dark"] {
+  --bg: url("../img/bgs/night.gif");
+
+  --text: #e6ecff;
+
+  --subtitle: #8fb8ff;
+  --subtitle-stroke: #1f365f;
+
+  --card: rgba(10, 18, 35, 0.75);
+  --card-strong: rgba(10, 18, 35, 0.9);
+
+  --border: #2f4f9e;
+
+  --accent: #8fb8ff;
+  --accent-hover: #5f85ff;
+  --accent-soft: #6ea8ff;
+  --accent-strong: #5f85ff;
+
+  --dim: rgba(0,0,0,0.5);
+
+  --scrollbar: #5372c0;
+  --scrollbar-hover: #5f85ff;
+
+  --input-border: #3a6edc;
+  --input-focus: #6ea8ff;
+
+  --glass: rgba(8, 14, 28, 0.85);
+  --glass-strong: rgba(8, 14, 28, 0.95);
+
+  --white: #ffffff;
+  --black: #000000;
+
+  --overlay-light: rgba(0,0,0,0.2);
+  --overlay-strong: rgba(0,0,0,0.35);
+
+  --shadow: rgba(0,0,0,0.8);
+}
+
+
+/* =====================================================
+   🎮 BLOCKS THEME
+===================================================== */
+
+body[data-theme="blocks"] {
+  --bg: url("../img/bgs/blocks.jpg");
+
+  --card: rgba(0,0,0,0.85);
+  --card-strong: rgba(0,0,0,0.95);
+
+  --accent: #fff;
+  --accent-strong: #fff;
+
+  --scrollbar: #bdbdbd;
+  --scrollbar-hover: #e6e6e6;
+  --scrollbar-border: #000;
+
+  --border: #000;
+
+  font-family: 'Blocks', monospace;
+}
+
+/* =====================================================
+   🧼 RESET (ANTI-MODERN)
+===================================================== */
+
+body[data-theme="blocks"] * {
+  border-radius: 0 !important;
+  backdrop-filter: none !important;
+}
+
+body[data-theme="blocks"] #library::-webkit-scrollbar-track,
+body[data-theme="blocks"] #library::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+}
+
+/* =====================================================
+   🔘 BASE BUTTON (MC STYLE)
+===================================================== */
+
+body[data-theme="blocks"] .mc-btn {
+  background-image: url("../img/mc-btn.png");
+  image-rendering: pixelated;
+
+  border: 2px solid #000 !important;
+  color: #fff !important;
+
+  font-family: 'Blocks', monospace;
+  text-shadow: 2px 2px #3a3a3a;
+
+  cursor: pointer;
+  transition: none !important;
+}
+
+body[data-theme="blocks"] .mc-btn:hover {
+  background-image: url("../img/mc-btn2.png");
+  color: #ffffa0 !important;
+}
+
+body[data-theme="blocks"] .mc-btn:active {
+  transform: translateY(2px);
+  filter: brightness(0.9);
+}
+
+/* =====================================================
+   🔘 SYSTEM BUTTONS (FILTER / TOP / ETC)
+===================================================== */
+
+body[data-theme="blocks"] 
+.filter-btn,
+body[data-theme="blocks"] 
+.top-btn,
+body[data-theme="blocks"] 
+#login-confirm,
+body[data-theme="blocks"] 
+#logout-btn,
+body[data-theme="blocks"] 
+#theme-menu button {
+
+  background-image: url("../img/mc-btn.png");
+  background-repeat: repeat;
+  image-rendering: pixelated;
+
+  border: 2px solid;
+  border-color: #AAA #565656 #565656 #AAA;
+  border-width: 2px 2px 4px 2px;
+
+  outline: 2px solid #000;
+
+  color: #fff;
+  font-family: 'Blocks', monospace;
+  text-shadow: 3px 3px #4C4C4C;
+
+  padding: 6px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: none !important;
+}
+
+/* hover */
+body[data-theme="blocks"] 
+.filter-btn:hover,
+body[data-theme="blocks"] 
+.top-btn:hover,
+body[data-theme="blocks"] 
+#theme-menu button:hover {
+  background-image: url("../img/mc-btn2.png") !important;
+  border-color: #BDC6FF #59639A #59639A #BDC6FF;
+  color: #ffffa0;
+  opacity: 1 !important;
+}
+
+/* active (selecionado) */
+body[data-theme="blocks"] .filter-btn.active,
+body[data-theme="blocks"] .top-btn.active,
+body[data-theme="blocks"] #history-btn.active,
+body[data-theme="blocks"] #theme-menu button.active,
+body[data-theme="blocks"] #profile-btn.active,
+body[data-theme="blocks"] #changelog-btn.active,
+body[data-theme="blocks"] #favorites-btn.active {
+  background-image: url("../img/mc-btn.png");
+
+  transform: translateY(2px);
+
+  border-width: 0;
+
+  box-shadow:
+    inset 0 -2px 0 #535057;
+
+  text-shadow: 1px 1px #464646;
+
+  color: #ffffa0;
+}
+
+/* =====================================================
+   📦 FILTER BAR
+===================================================== */
+
+body[data-theme="blocks"] #filters {
+  background: transparent;
+  border: 3px solid transparent;
+  padding: 6px;
+  gap: 6px;
+}
+
+/* =====================================================
+   🪟 PANELS
+===================================================== */
+
+body[data-theme="blocks"] 
+#changelog,
+body[data-theme="blocks"] 
+#login-box,
+body[data-theme="blocks"] 
+#user-box,
+body[data-theme="blocks"] 
+#theme-menu {
+  background: #7a7a7a !important;
+  border: 3px solid #000 !important;
+}
+
+/* logs */
+body[data-theme="blocks"] .log {
+  background: url("../img/bgs/librarybg-blocks.png") !important;
+  background-size: 512px;
+  border: 3px solid #000 !important;
+  border: 2px solid #000 !important;
+}
+/* =====================================================
+   ⌨️ INPUTS
+===================================================== */
+
+body[data-theme="blocks"] 
+#login-input,
+body[data-theme="blocks"] 
+#login-password {
+  background: #000 !important;
+  border: 2px solid #000 !important;
+
+  color: rgb(251,255,0) !important;
+  font-family: monospace;
+}
+
+/* =====================================================
+   🎮 LIBRARY / CARDS
+===================================================== */
+
+body[data-theme="blocks"] #library {
+  background: url("../img/bgs/librarybg-blocks.png");
+  background-size: 512px;
+  border: 3px solid #000;
+}
+
+body[data-theme="blocks"] .cover img:not(.new-badge) {
+  filter: none !important;
+}
+
+/* remove efeitos modernos */
+body[data-theme="blocks"]:has(.game:hover) #dim {
+  opacity: 0 !important;
+}
+
+body[data-theme="blocks"] 
+#library:has(.game:hover) 
+.game:not(:hover) .cover img {
+  filter: none !important;
+  transform: none !important;
+}
+
+body[data-theme="blocks"] 
+#library:has(.game:hover) 
+.game:not(:hover) p {
+  opacity: 1 !important;
+}
+
+/* =====================================================
+   📝 TEXT
+===================================================== */
+
+body[data-theme="blocks"] .game p {
+  color: #fff !important;
+  text-shadow: 2px 2px 0 #000;
+}
+
+body[data-theme="blocks"] #title {
+  content: url("../img/blocks-title.png");
+}
+
+body[data-theme="blocks"] #subtitle {
+  display: none;
+}
+
+body[data-theme="blocks"] .new-badge-text {
+  position: absolute;
+  right: -8px;
+  top: -10px;
+
+  font-family: 'Blocks', monospace;
+  font-size: 10px;
+  color: #ffff55;
+
+  text-shadow: 2px 2px #000;
+  transform: rotate(-10deg);
+
+  pointer-events: none;
+  animation: newSwing 1.2s infinite ease-in-out;
+}
+
+body[data-theme="blocks"] #history-title{
+  font-family:'Blocks', monospace;
+  text-shadow:3px 3px 0 #000;
+}
+
+body[data-theme="blocks"] #history-btn {
+  background-image: url("../img/mc-btn.png");
+  background-repeat: repeat;
+  image-rendering: pixelated;
+
+  border: 2px solid;
+  border-color: #AAA #565656 #565656 #AAA;
+  border-width: 2px 2px 4px 2px;
+
+  width:40px;
+  height:35px;
+  margin-top:8px;
+
+  outline: 2px solid #000;
+
+  color: #fff;
+  font-family: 'Blocks', monospace;
+  font-size: 14px;
+  text-shadow: 3px 3px #4C4C4C;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: none !important;
+}
+
+body[data-theme="blocks"] #history-btn:hover {
+  background-image: url("../img/mc-btn2.png") !important;
+  border-color: #BDC6FF #59639A #59639A #BDC6FF;
+  color: #ffffa0;
+}
+
+body[data-theme="blocks"] #leaderboard{
+  background: url("../img/bgs/librarybg-blocks.png");
+  background-size: 512px;
+}
+
+body[data-theme="dreamcore"] {
+  --bg: url("../img/bgs/dreamcore.jpg");
+
+  --text: #e8e2d6;
+  --text-soft: #cfc6b8;
+
+  --subtitle: #d9c7a1;
+  --subtitle-stroke: rgba(56, 51, 46, 0.904);
+
+  --card: rgba(40, 38, 35, 0.55);
+  --card-strong: rgba(40, 38, 35, 0.75);
+
+  --border: rgba(220, 200, 180, 0.25);
+
+  --accent: #d9c7a1;
+  --accent-hover: #f0dec2;
+  --accent-soft: #cbbfa2;
+  --accent-strong: #f2d0e0;
+
+  --dim: rgba(0, 0, 0, 0.45);
+
+  --scrollbar: #b8a98c;
+  --scrollbar-hover: #d9c7a1;
+
+  --input-border: rgba(240, 220, 200, 0.35);
+  --input-focus: #f0dec2;
+
+  --glass: rgba(30, 28, 25, 0.6);
+  --glass-strong: rgba(30, 28, 25, 0.8);
+
+  --white: #ffffff;
+  --black: #000000;
+
+  --overlay-light: rgba(255, 255, 255, 0.04);
+  --overlay-strong: rgba(0, 0, 0, 0.35);
+
+  --shadow: rgba(0, 0, 0, 0.7);
+
+  --screen-filter: saturate(0.4) contrast(0.9) brightness(0.95);
+
+  /* vibe extra (opcional pra efeitos) */
+  --blur: 6px; 
+  --grain: 0.08;
+}

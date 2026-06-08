@@ -7,10 +7,17 @@ function startGame(core, rom){
 //   applyPreset(saved);
 // }
 
+  document.getElementById("game").innerHTML = "";
+
   // ===== EMULATOR CONFIG =====
 
   EJS_player = "#game";
-  EJS_core = core;
+
+  if(core === "arcade"){
+    EJS_core = "fbneo";
+  } else {
+    EJS_core = core;
+  }
 
   EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
   EJS_gameUrl = rom;

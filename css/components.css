@@ -1,0 +1,413 @@
+/* ================= TITLE ================= */
+
+#title{
+  display:block;
+  margin:10px auto 23px;
+  width:200px;
+  transform:scale(2);
+  image-rendering:pixelated;
+}
+
+#title-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-top:10px;
+}
+
+#subtitle{
+  font-family: 'Orbitron', sans-serif;
+  font-size:15px;
+  font-weight:900;
+  color: var(--subtitle);
+  text-transform:uppercase;
+  letter-spacing:-1px;
+  -webkit-text-stroke: 1px var(--subtitle-stroke);
+  margin-top:-8px;
+}
+
+/* ================= FILTER WRAPPER ================= */
+
+#filters-wrapper{
+  width:700px;
+
+  margin:0 auto;
+
+  display:flex;
+  align-items:stretch;
+  gap:8px;
+
+  opacity:0;
+}
+
+/* ================= FILTERS ================= */
+
+#filters{
+  flex:1;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  background:var(--card);
+
+  border:4px solid var(--border);
+  border-bottom:none;
+
+  border-radius:12px 12px 0 0;
+
+  padding:8px 10px;
+
+  backdrop-filter:blur(2px);
+}
+
+#filter-list{
+  display:flex;
+  gap:5px;
+  width:100%;
+}
+
+.filter-btn{
+  flex:1;
+  background:transparent;
+  border:none;
+  color:var(--accent);
+  font-size:12px;
+  cursor:pointer;
+  padding:6px 0;
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover{
+  color:#fff;
+  opacity:0.8;
+}
+
+.filter-btn.active{
+  color:#fff;
+  opacity:1;
+}
+
+/* ================= HISTORY TAB ================= */
+
+#history-btn{
+  width:52px;
+
+  background:var(--card);
+
+  border:4px solid var(--border);
+  border-bottom:none;
+
+  border-radius:12px 12px 0 0;
+
+  color:var(--accent);
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  transition:all 0.15s ease;
+}
+
+#history-btn:hover{
+  color:#fff;
+  filter:brightness(1.25);
+}
+
+#history-title{
+  width:100%;
+
+  font-size:28px;
+  font-weight:900;
+  font-family:'Orbitron', sans-serif;
+
+  color:var(--white);
+
+  text-shadow:2px 2px 0 var(--black);
+
+  pointer-events:none;
+}
+
+/* ================= LIBRARY ================= */
+
+#library{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  width:700px;
+  margin:-1px auto;
+  padding:25px;
+  background:var(--card);
+  border:4px solid var(--border);
+  border-radius:12px;
+  max-height:400px;
+  overflow-y:auto;
+  scrollbar-gutter:stable;
+}
+
+/* ================= GAME CARD ================= */
+
+.game{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:120px;
+  cursor:pointer;
+  transition:transform 0.15s ease, opacity 0.2s;
+  position:relative;
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.game.show{
+  opacity:1;
+}
+
+.game p{
+  margin-top:5px;
+  font-size:13px;
+  color:var(--accent);
+  transition: all 0.2s ease;
+  position:relative;
+  z-index:15;
+}
+
+.game-time{
+  position:absolute;
+
+  top:60px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  padding:6px 10px;
+
+  background:rgba(0,0,0,0.75);
+
+  border:2px solid var(--border);
+
+  border-radius:8px;
+
+  color:var(--accent);
+
+  font-size:11px;
+  font-family:'Orbitron', sans-serif;
+
+  white-space:nowrap;
+
+  opacity:0;
+
+  z-index:5;
+
+  transition:
+    transform 0.25s cubic-bezier(0.2,0.9,0.2,1),
+    opacity 0.2s ease;
+}
+
+/* ================= COVER ================= */
+
+.cover{
+  position:relative;
+  transition:transform 0.25s;
+  will-change:transform;
+  z-index:10;
+}
+
+.cover img{
+  will-change:transform, filter;
+}
+
+.cover img:not(.new-badge){
+  width:120px;
+  height:160px;
+  object-fit:cover;
+  border-radius:6px;
+  image-rendering:pixelated;
+  filter:brightness(1);
+}
+
+/* ================= HOVER ================= */
+
+body:has(.game:hover) #dim,
+body.controller-mode:has(.game.selected) #dim{
+  opacity:1;
+}
+
+/* HOVER NORMAL */
+#library:has(.game:hover) .game:not(:hover) .cover img{
+  filter:brightness(0.35);
+  transform:scale(0.98);
+}
+
+#library:has(.game:hover) .game:not(:hover) p{
+  opacity:0;
+}
+
+/* CONTROLE */
+body.controller-mode #library .game:not(.selected) .cover img{
+  filter:brightness(0.35);
+  transform:scale(0.98);
+}
+
+body.controller-mode #library .game:not(.selected) p{
+  opacity:0;
+}
+
+/* estado ativo (mouse OU controle) */
+body.controller-mode #library .game.selected .cover img {
+  transform: scale(1.25);
+  filter: brightness(1) contrast(1.05);
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.2, 1),
+              filter 0.25s ease;
+}
+
+/* ITEM ATIVO */
+#library .game:hover p,
+body.controller-mode #library .game.selected p {
+  opacity: 1;
+  transform: translateY(20px) scale(1.1);
+  transition: all 0.2s ease;
+}
+
+#library .game:hover .new-badge,
+body.controller-mode #library .game.selected .new-badge{
+  transform:rotate(-15deg) scale(1.3);
+}
+
+#library .game:hover .game-time,
+body.controller-mode #library .game.selected .game-time{
+
+  opacity:1;
+
+  transform:
+    translateX(75px);
+}
+
+#library .game.edge-right:hover .game-time,
+body.controller-mode #library .game.edge-right.selected .game-time{
+
+  transform:
+    translateX(-117px);
+}
+
+#library .game:hover,
+body.controller-mode #library .game.selected{
+  z-index:50;
+}
+
+/* ================= SCROLL ================= */
+
+#library::-webkit-scrollbar{
+  width:14px;
+}
+
+#library::-webkit-scrollbar-track{
+  background:var(--border);
+  margin:-1px 0;
+  border-radius:6px;
+}
+
+#library::-webkit-scrollbar-thumb{
+  background:var(--scrollbar);
+  border:2px solid var(--border);
+  border-radius:6px;
+}
+
+#library::-webkit-scrollbar-thumb:hover{
+  background:var(--accent-strong);
+}
+
+/* ================= NEW BADGE ================= */
+
+.new-badge{
+  position:absolute;
+  right:-8px;
+  top:-10px;
+  width:28px;
+  transform:rotate(-15deg);
+  pointer-events:none;
+  z-index:10;
+  animation:newSwing 1.2s infinite ease-in-out;
+}
+
+/* ================= CONTROLLER ================= */
+
+body.controller-mode .game.selected .cover img{
+  transform:scale(1.18);
+  filter:brightness(1.15);
+}
+
+body.controller-mode .game.selected p{
+  opacity:1;
+  transform:translateY(20px) scale(1.1);
+}
+
+body.controller-mode .game.selected{
+  z-index:20;
+}
+
+/* ================= FAVORITES ================= */
+
+.favorite-btn{
+
+  position:absolute;
+
+  top:6px;
+  right:6px;
+
+  width:20px;
+  height:20px;
+
+  font-size:15px;
+  line-height:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0, 0, 0, 0.349);
+
+  border:0px solid rgba(255, 255, 255, 0.034);
+  border-radius:8px;
+
+  color:white;
+
+  cursor:pointer;
+
+  opacity:0;
+
+  transform:scale(0.8);
+
+  box-sizing:border-box;
+
+  z-index:30;
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+/* hover mouse */
+#library .game:hover .favorite-btn,
+
+/* controle */
+body.controller-mode #library .game.selected .favorite-btn{
+
+  opacity:1;
+  transform:scale(1);
+}
+
+.favorite-btn:hover{
+  background:rgba(131, 131, 131, 0.575);
+}
+
+.favorite-btn.favorited{
+
+  color:#ffd500;
+
+  text-shadow:
+    0 0 6px rgba(255,213,0,0.7);
+}
