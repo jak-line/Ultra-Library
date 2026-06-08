@@ -1,0 +1,113 @@
+  <!-- ===== MODALS ===== -->
+  <div id="modals">
+
+    <!-- CHANGELOG -->
+    <div id="changelog">
+      <h2>Atualizações</h2>
+      <div id="changelog-content"></div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login-box">
+      <button id="login-close">X</button>
+      <h2>Login</h2>
+      <input type="text" id="login-input" placeholder="Seu User">
+      <input type="password" id="login-password" placeholder="Senha">
+      <button id="login-confirm">Entrar</button>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div id="leaderboard">
+
+      <button id="leaderboard-close">
+        X
+      </button>
+
+      <h2>🏆 Ranking Global</h2>
+
+      <!-- TOP 3 -->
+      <div class="leaderboard-podium"></div>
+
+      <!-- TOP 4-7 -->
+      <div class="leaderboard-list"></div>
+
+      <!-- YOUR RANK -->
+      <div id="your-rank">
+        Você não está no ranking
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===== MOBILE ===== -->
+  <div id="mobile-app">
+
+  <!-- TOPO -->
+  <header id="mobile-header">
+
+    <img id="mobile-logo" src="img/titlemob.png">
+
+    <div id="mobile-actions">
+      <button id="mobile-theme-btn">🎨</button>
+      <button id="mobile-search-btn">🔍</button>
+    </div>
+
+  </header>
+
+  <!-- CONTEÚDO -->
+  <main id="mobile-content">
+
+    <!-- CONTINUE JOGANDO -->
+    <section class="mobile-section">
+
+        <h2 class="mobile-title">
+          Continue Jogando:
+        </h2>
+
+        <div id="continue-slider"></div>
+
+        <div class="continue-card">
+
+          <img src="covers/smw.png">
+
+          <div class="continue-info">
+
+           <h3>Super Mario World</h3>
+
+            <span>
+              Continuar jogando
+            </span>
+
+          </div>
+
+</div>
+
+        <div id="slider-dots"></div>
+
+    </section>
+
+      <!-- CONSOLES -->
+      <section class="mobile-section">
+
+        <h2 class="mobile-title">
+          Consoles:
+        </h2>
+
+        <div id="console-grid"></div>
+
+      </section>
+
+    </main>
+
+    <!-- NAVEGAÇÃO -->
+    <nav id="mobile-nav">
+
+      <button data-tab="home">🏠</button>
+      <button data-tab="favorites">⭐</button>
+      <button data-tab="ranking">🏆</button>
+      <button data-tab="profile">👤</button>
+
+    </nav>
+
+  </div>

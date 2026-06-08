@@ -1,0 +1,234 @@
+/* =====================================================
+   📱 MOBILE APP
+===================================================== */
+
+body.mobile{
+  margin:0;
+  overflow-x:hidden;
+
+  background:url("../img/ocean.jpg") center/cover fixed;
+}
+
+/* APP */
+
+#mobile-app{
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+}
+
+/* =====================================================
+   🔷 HEADER
+===================================================== */
+
+#mobile-header{
+  position:sticky;
+  top:0;
+
+  height:75px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 20px;
+
+  background:rgba(0,10,35,.85);
+  backdrop-filter:blur(10px);
+
+  border-bottom:2px solid #1e4c8f;
+
+  z-index:1000;
+}
+
+#mobile-logo{
+  height:50px;
+  width:auto;
+}
+
+#mobile-actions{
+  display:flex;
+  gap:15px;
+}
+
+#mobile-actions button{
+  border:none;
+  background:none;
+
+  font-size:28px;
+}
+
+/* =====================================================
+   📄 CONTENT
+===================================================== */
+
+#mobile-content{
+  flex:1;
+
+  padding:20px;
+  padding-bottom:100px;
+}
+
+/* =====================================================
+   🟡 TITLES
+===================================================== */
+
+.mobile-title{
+  margin:0 0 20px;
+
+  text-align:center;
+
+  font-family:"Orbitron",sans-serif;
+  font-size:2rem;
+
+  color:#ffe600;
+
+  text-shadow:
+    0 0 8px rgba(255,230,0,.6);
+}
+
+/* =====================================================
+   🎮 CONTINUE PLAYING
+===================================================== */
+
+#continue-slider{
+  display:flex;
+  gap:15px;
+
+  overflow-x:auto;
+
+  scroll-snap-type:x mandatory;
+
+  padding-bottom:10px;
+}
+
+#continue-slider::-webkit-scrollbar{
+  display:none;
+}
+
+.continue-card{
+  flex:0 0 85%;
+
+  scroll-snap-align:center;
+}
+
+.continue-card img{
+  width:100%;
+
+  border-radius:6px;
+
+  display:block;
+}
+
+/* =====================================================
+   🕹️ CONSOLES
+===================================================== */
+
+#console-grid{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:15px;
+}
+
+.console-card{
+  overflow:hidden;
+
+  border-radius:4px;
+}
+
+.console-card img{
+  width:100%;
+  display:block;
+}
+
+/* =====================================================
+   🔽 NAVIGATION
+===================================================== */
+
+#mobile-nav{
+  position:fixed;
+
+  bottom:0;
+  left:0;
+
+  width:100%;
+  height:75px;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  background:rgba(0,15,45,.95);
+
+  border-top:2px solid #1e4c8f;
+
+  backdrop-filter:blur(10px);
+
+  z-index:1000;
+}
+
+#mobile-nav button{
+  border:none;
+  background:none;
+
+  font-size:32px;
+}
+
+/* =====================================================
+   ⏰ CONTINUE SLIDER
+===================================================== */
+
+#continue-slider{
+  display:flex;
+  gap:15px;
+
+  overflow-x:auto;
+
+  scroll-snap-type:x mandatory;
+
+  scrollbar-width:none;
+
+  padding-inline:20px;
+}
+
+#continue-slider::-webkit-scrollbar{
+  display:none;
+}
+
+.continue-card{
+  flex:0 0 85%;
+
+  scroll-snap-align:center;
+}
+
+.continue-card img{
+  width:100%;
+  display:block;
+
+  border-radius:16px;
+}
+
+/* =====================================================
+   🚫 DESKTOP
+===================================================== */
+
+body.mobile #overlays,
+body.mobile #ui,
+body.mobile #intro,
+body.mobile #app,
+body.mobile #modals,
+body.mobile #game{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+}
+
+#mobile-app{
+  display:none;
+}
+
+body.mobile #mobile-app{
+  display:flex !important;
+}

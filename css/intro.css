@@ -1,0 +1,172 @@
+
+/* =====================================================
+   🎬 INTRO CONTAINER
+===================================================== */
+
+#intro{
+  position:fixed;
+  inset:0;
+
+  background:black;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:2000;
+
+  backdrop-filter:blur(6px) brightness(0.7);
+}
+
+
+/* =====================================================
+   🖼️ BACKGROUND
+===================================================== */
+
+#intro-bg{
+  position:absolute;
+
+  width:640px;
+  height:480px;
+
+  background:url("../img/introbg.png") center/cover no-repeat;
+
+  image-rendering:pixelated;
+
+  box-shadow:0 0 80px rgba(0,0,0,0.9);
+  border:2px solid #000;
+
+  filter:contrast(1.2) saturate(0.9);
+}
+
+#intro-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:repeating-linear-gradient(
+    to bottom,
+    var(--overlay-strong),
+    var(--overlay-strong) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+
+/* =====================================================
+   🎮 PS2 + CD ELEMENTS
+===================================================== */
+
+#ps2{
+  position:absolute;
+  transform:translateY(-50px);
+  width:320px;
+
+  image-rendering:pixelated;
+  z-index:1;
+}
+
+#cd{
+  position:absolute;
+  width:320px;
+  transform:translateY(150px);
+
+  cursor:pointer;
+  z-index:2;
+}
+
+#cd img{
+  width:100%;
+  pointer-events:none;
+}
+
+
+/* =====================================================
+   🎞️ CD ANIMATION
+===================================================== */
+
+@keyframes cdInsert{
+  0%{
+    transform:translateY(150px) translateX(-6px) scale(1.12) rotate(-2deg);
+  }
+  40%{
+    transform:translateY(-30px) translateX(-3px) scale(1.08) rotate(1deg);
+  }
+  65%{
+    transform:translateY(-45px) translateX(1px) scale(0.97) rotate(-1deg);
+  }
+  80%{
+    transform:translateY(-48px) translateX(-1px) scale(1.02) rotate(0.5deg);
+  }
+  100%{
+    transform:translateY(-50px);
+  }
+}
+
+#cd.insert{
+  animation:cdInsert 0.75s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+
+
+/* =====================================================
+   ⏭️ SKIP BUTTON
+===================================================== */
+
+#skip-intro{
+  position:absolute;
+  top:20px;
+  right:20px;
+
+  background:rgba(0,0,0,0.6);
+  border:1px solid #fff;
+
+  color:white;
+  font-size:12px;
+
+  padding:6px 12px;
+
+  cursor:pointer;
+  z-index:10;
+}
+
+#skip-intro:hover{
+  background:white;
+  color:black;
+}
+
+
+/* =====================================================
+   💬 TEXT / INSERT MESSAGE
+===================================================== */
+
+#insert-text{
+  position:absolute;
+  bottom:45px;
+
+  font-size:14px;
+  font-family:monospace;
+  letter-spacing:2px;
+
+  color:#9ecbff;
+  opacity:0.8;
+
+  animation:blink 1s infinite;
+}
+
+
+/* =====================================================
+   🚫 STARTUP BLOCK (bloqueia interação)
+===================================================== */
+
+#startup-block{
+  position:fixed;
+  inset:0;
+
+  z-index:9999;
+
+  background:transparent;
+  pointer-events:auto;
+
+  transition:opacity 0.3s;
+}

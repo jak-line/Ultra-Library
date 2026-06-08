@@ -1,0 +1,83 @@
+/* ================= LAYOUT ================= */
+
+#screen{
+  width:800px;
+  height:600px;
+  margin:40px auto 0;
+  transform:scale(1.4);
+  transform-origin:top center;
+  filter:contrast(1.1) saturate(0.9);
+  position:relative;
+  z-index:2;
+}
+
+/* ================= OVERLAYS ================= */
+
+#dim{
+  position:fixed;
+  inset:0;
+  background:var(--dim);
+  opacity:0;
+  pointer-events:none;
+  transition: all 0.2s ease;
+  z-index:1;
+}
+
+#fade{
+  position:fixed;
+  inset:0;
+  background:black;
+  z-index:1000;
+  opacity:1;
+  pointer-events:none;
+}
+
+/* ================= GAME PLAYER ================= */
+
+#game{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:1200;
+  pointer-events:none;
+}
+
+#game-msg{
+  opacity:0;
+  transition: all 0.3s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  color:#fff;
+  font-size:14px;
+  margin-bottom:10px;
+  font-family:monospace;
+  letter-spacing:1px;
+}
+
+.loading-text{
+  font-size:16px;
+  color: var(--accent-soft);
+  animation:blink 1s infinite;
+}
+
+.f5-text{
+  font-size:12px;
+  opacity:0.8;
+}
+
+/* ================= GAME TRANSITION ================= */
+
+#game-transition{
+  position:fixed;
+  inset:0;
+  background:black;
+  z-index:1100;
+  opacity:0;
+  pointer-events:none;
+  transition:none;
+}

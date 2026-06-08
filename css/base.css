@@ -1,0 +1,101 @@
+/* ================= FONTS ================= */
+
+@font-face {
+  font-family: 'Blocks';
+  src: url('../fonts/Blocks.woff2') format('woff2'),
+       url('../fonts/Blocks.woff') format('woff');
+}
+
+/* ================= BASE ================= */
+
+:root {
+  --bg: url("../img/bgs/bg.jpg");
+
+  --text: white;
+  --card: #5f8dd870;
+  --border: #1b3c7a;
+  --accent: #ffe066;
+
+  --subtitle: #ff533c;
+  --subtitle-stroke: var(--black);
+
+  --accent-hover: #7aa6ff;
+  --dim: rgba(0,0,0,0.4);
+
+  --scrollbar: #5f8ed8;
+  --scrollbar-hover: #7aa6ff;
+  --scrollbar-border: #0f2d5c;
+
+  --input-border: #3a6edc;
+  --input-focus: #7aa6ff;
+
+  --glass: rgba(15,45,92,0.9);
+
+  --white: #ffffff;
+  --black: #000000;
+
+  --accent-soft: #9ecbff;
+  --accent-strong: #7aa6ff;
+
+  --card-strong: #5f8dd886;
+  --glass-strong: rgba(15,45,92,0.9);
+
+  --overlay-light: rgba(0,0,0,0.15);
+  --overlay-strong: rgba(0,0,0,0.2);
+
+  --shadow: rgba(0,0,0,0.6);
+
+  --screen-filter: none;
+}
+
+body {
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  color: var(--text);
+  font-family: Verdana, Arial, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+body.started {
+  overflow-y: auto;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--overlay-light),
+    var(--overlay-light) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  pointer-events: none;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+
+  backdrop-filter: var(--screen-filter);
+  -webkit-backdrop-filter: var(--screen-filter);
+
+  transition: all 0.3s ease;
+}
+
+/* reset básico de imagens */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
