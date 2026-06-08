@@ -1,0 +1,28 @@
+name: ULTRA Release v2.0
+
+on:
+  schedule:
+    - cron: "0 17 8 6 *" 
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Switch to v2 branch
+        run: git checkout v2
+
+      - name: Deploy to main (GitHub Pages)
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "🚀 release v2"
+          git push origin HEAD:main
