@@ -21,6 +21,7 @@ import {
 // ===== CONTROLLER =====
 import {
   startControllerNavigation,
+  stopControllerNavigation,
   resetSelection
 } from "./controller.js";
 
@@ -98,6 +99,8 @@ function stopLoadingDots() {
 // ============================================
 
 function startGameFlow(game) {
+  stopControllerNavigation();
+
   startTracking(game);
 
   document.body.classList.add("playing");
