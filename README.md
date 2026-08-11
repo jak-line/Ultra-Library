@@ -66,20 +66,23 @@ Ultra-Library/
 │
 ├── index.html
 │
-├── js/
-│   └── "all .js files"
-│
-├── css/
-│   └── "all .css files"
-│
-├── img/
-│   └── "all img files"
+├── audio/
+│   └── "all audio files"
 │
 ├── covers/
 │   └── "all covers"
 │
-└── audio/
-    └── "all audio files"
+├── css/
+│   └── "all .css files"
+│
+├── fonts/
+│   └── "all font files"
+│
+├── img/
+│   └── "all img files"
+│
+└── js/
+    └── "all .js files"
 
 ```
 
