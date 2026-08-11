@@ -67,15 +67,10 @@ Ultra-Library/
 ├── index.html
 │
 ├── js/
-│   ├── changelog.js
-│   ├── controls.js
-│   ├── emulator.js
-│   ├── games.js
-│   ├── roms.js
-│   └── script.js
+│   └── "all .js files"
 │
 ├── css/
-│   └── style.css
+│   └── "all .css files"
 │
 ├── img/
 │   └── "all img files"
